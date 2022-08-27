@@ -11,8 +11,12 @@ function Details () {
     const movie = useSelector(store=>store.movie);
 
     useEffect(() => {
-        dispatch({ type: 'FETCH_MOVIE', payload: params.id});
+        getMovie();
     }, []);
+
+    const getMovie = () => {
+        dispatch({ type: 'FETCH_MOVIE', payload: params.id});
+    }
 
     const handleBackBtn = () => {
         console.log('back btn clicked');
@@ -20,10 +24,16 @@ function Details () {
     }//end of handleBackBtn
 
     console.log('params', params.id);
+    console.log('movie:', movie);
+    console.log('movie:', movie[0]);
+
 
     return (
         <>
         <div>
+            {movie[0] && <p>{movie[0].title}</p>}
+            {movie[0] && <p>{movie[0].description}</p>}
+            {movie[0] && <img src={movie[0].poster} alt={movie[0].title}/>}
         </div>
         <button onClick={handleBackBtn}>Back to list!</button>
         </>
