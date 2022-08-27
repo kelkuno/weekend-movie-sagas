@@ -59,6 +59,8 @@ const movie = (state = [], action) => {
     switch (action.type) {
         case 'SET_MOVIE':
             return action.payload;
+        case 'CLEAR':
+            return [];
         default:
             return state;
     }

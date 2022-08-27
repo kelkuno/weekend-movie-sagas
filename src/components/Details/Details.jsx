@@ -20,6 +20,7 @@ function Details () {
 
     const handleBackBtn = () => {
         console.log('back btn clicked');
+        dispatch({type:'CLEAR'});
         history.push('/');
     }//end of handleBackBtn
 
@@ -31,9 +32,9 @@ function Details () {
     return (
         <>
         <div>
+            {movie[0] && <img src={movie[0].poster} alt={movie[0].title}/>}
             {movie[0] && <p>{movie[0].title}</p>}
             {movie[0] && <p>{movie[0].description}</p>}
-            {movie[0] && <img src={movie[0].poster} alt={movie[0].title}/>}
         </div>
         <button onClick={handleBackBtn}>Back to list!</button>
         </>
