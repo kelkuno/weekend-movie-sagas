@@ -39,6 +39,7 @@ function* fetchGenres(action) {
 
 }//end of fetchGenres
 
+
 function* fetchMovie(action){
     try{
         const movie = yield axios.get(`/api/movie/${action.payload}`);
@@ -47,7 +48,6 @@ function* fetchMovie(action){
     } catch {
         console.log('get movie detail error');
     }
-
 }//end of fetchMovie
 
 function* fetchAllMovies() {
@@ -60,17 +60,6 @@ function* fetchAllMovies() {
         console.log('get all error');
     }    
 }//end fetchAllMovies
-
-function* fetchMovie (action){
-    
-    try {
-        const movie = yield axios.get(`/api/movie/${action.payload}`)
-        console.log('what we get back from server', movie.data);
-        yield put({type: 'SET_MOVIE', payload: movie.data});
-    } catch {
-        console.log('error in fetch movie');
-    }
-}//end fetchMovie
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
