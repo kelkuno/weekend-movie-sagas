@@ -1,5 +1,5 @@
-import {useHistory, useParams} from 'react-router-dom';
 import {useEffect} from 'react';
+import {useHistory, useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 
 
@@ -11,16 +11,15 @@ function Details () {
     const movie = useSelector(store=>store.movie);
     const genres = useSelector(store=>store.genres);
 
-    useEffect(() => {
+    useEffect(()=>{
         getMovie();
     }, []);
 
     const getMovie = () => {
         dispatch({ type: 'FETCH_MOVIE', payload: params.id});
         dispatch({type: 'GET_GENRES', payload:params.id});
-        
     }
-
+    
     const handleBackBtn = () => {
         console.log('back btn clicked');
         dispatch({type:'CLEAR'});
@@ -32,7 +31,6 @@ function Details () {
     console.log('movie[0]:', movie[0]);
     console.log('genres:', genres);
     console.log('genres[0]:', genres[0]);
-
 
 
     return (
