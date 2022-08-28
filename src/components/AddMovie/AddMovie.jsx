@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import {useDispatch} from 'react-redux';
 import{useHistory} from 'react-router-dom';
 
 function AddMovie() {
@@ -9,6 +10,9 @@ function AddMovie() {
     const [genre, setGenre] = useState('');
 
     const history = useHistory();
+    const dispatch = useDispatch();
+
+    const newMovie = {title: title, poster: photo, description: description, genre_id: genre}
 
     const handleTitle = (event) => {
         setTitle(event.target.value);
@@ -27,11 +31,21 @@ function AddMovie() {
 
     const handleGenre = (event) => {
         setGenre(event.target.value);
-        
-    }
+        console.log(genre);
+    } //end of handleGenre
+
 
     const handleCancel = () =>{
         console.log('cancel hit');
+        history.push('/');
+    }
+
+    const handleForm = () => {
+        console.log('form submitted');
+        dispatch({
+            type: 'ADD_MOVIE',
+            payload: newMovie
+        });
         history.push('/');
     }
 
@@ -56,6 +70,7 @@ function AddMovie() {
             <select
             onChange={handleGenre}
             id="genre">
+                <option>Choose Genre</option>
                 <option value="1">Adventure</option>
                 <option value="2">Animated</option>
                 <option value="3">Biographical</option>
@@ -70,7 +85,7 @@ function AddMovie() {
                 <option value="12">Space-Opera</option>
                 <option value="13">Superhero</option>
             </select>
-            <button type="submit">Save</button>
+            <button type="submit" onClick={handleForm}>Save</button>
             <button onClick={handleCancel}>Cancel</button>
         </>
     );
