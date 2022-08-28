@@ -1,6 +1,10 @@
 .movies {
-    display : flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns:repeat(4, 1fr);
+    grid-auto-rows: minmax(70px, auto);
+    grid-gap: 1em;
+    column-gap:1em;
+    justify-items: center;
 }
 img {
     max-width: 185px;

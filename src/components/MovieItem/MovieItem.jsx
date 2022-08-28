@@ -1,4 +1,5 @@
 import { useHistory } from 'react-router-dom';
+import './MovieItem.css'
 
 
 function MovieItem ({movie}) {
@@ -13,7 +14,7 @@ function MovieItem ({movie}) {
     }//end of handleDetail function
 
     return(
-        <div onClick={handleDetail}>
+        <div className="movie-card" onClick={handleDetail}>
             <h3>{movie.title}</h3>
             <img src={movie.poster} alt={movie.title}/>
         </div>
