@@ -46,6 +46,7 @@ function AddMovie() {
             type: 'ADD_MOVIE',
             payload: newMovie
         });
+        dispatch({ type: 'FETCH_MOVIES' });
         history.push('/');
     }
 
