@@ -32,6 +32,22 @@ router.get('/:id', (req, res) =>{
 
 });
 
+//server route to get movie details from database
+router.get('/:id', (req, res) => {
+  const id = req.params.id;
+  const query = `SELECT * FROM "movies"
+  WHERE "id" = ${id}`;
+
+  pool.query(query)
+    .then(result => {
+      res.send(result.rows);
+    })
+    .catch(err => {
+      console.error('error in movie get', err);
+      res.sendStatus(500)
+    })
+});//end of movie server route
+
 router.post('/', (req, res) => {
   console.log(req.body);
   // RETURNING "id" will give us back the id of the created movie
